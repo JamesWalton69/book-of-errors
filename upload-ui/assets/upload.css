@@ -1,1 +1,44 @@
-body { background:#111; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upload UI</title>
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/upload.css">
+</head>
+<body>
+<header>
+    <img src="../assets/logo-home.svg" alt="Vault & Garden Logo" class="logo">
+    <h1>Upload UI</h1>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="../vault/index.html">Vault</a>
+        <a href="../garden/index.html">Garden</a>
+        <a href="../code-lab/index.html">Code Lab</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>Add Files to Vault</h2>
+    <form id="uploadForm">
+        <input type="text" id="fileTitle" placeholder="File Title" required><br><br>
+        <input type="url" id="fileUrl" placeholder="Playbook URL" required><br><br>
+        <select id="fileType">
+            <option value="image">Image</option>
+            <option value="video">Video</option>
+            <option value="pdf">PDF</option>
+            <option value="audio">Audio</option>
+            <option value="code">Code</option>
+        </select><br><br>
+        <button type="submit">Add to Vault</button>
+    </form>
+
+    <h3>Current Vault Files</h3>
+    <div id="vaultFilesList"></div>
+</div>
+
+<footer>© 2025 Vault & Garden</footer>
+<script src="assets/upload.js"></script>
+</body>
+</html>
