@@ -40,70 +40,88 @@ This project is fully hosted on **GitHub Pages** and integrated with **Playbook*
 
 ### Upload UI
 - Add new files dynamically to Vault.  
-- Store new entries in **localStorage** for instant access.  
+- Store new entries in **localStorage** for instant access.
 
 ---
 
 ## 🗂️ Project Structure
 
-vault-and-garden/
-│ index.html
-│ index2.html
-│ assets/
-│ style.css
-│ favicon.svg
-│ logo-home.svg
-│ logo-codelab.svg
-vault/
-│ index.html
-│ assets/vault.css
-│ assets/vault.js
-garden/
-│ index.html
-│ assets/garden.css
-│ assets/garden.js
-code-lab/
-│ index.html
-│ assets/codelab.css
-│ assets/codelab.js
-upload-ui/
-│ index.html
-│ assets/upload.css
-│ assets/upload.js
-
-yaml
-Copy code
+```
+vault-and-garden/               # Root folder
+│
+├─ index.html                   # Home page
+├─ index2.html                  # Landing page
+├─ assets/                      # Shared assets
+│   ├─ style.css                # Main CSS
+│   ├─ favicon.svg              # Favicon
+│   ├─ logo-home.svg            # Home page logo
+│   └─ logo-codelab.svg         # Code Lab logo
+│
+├─ vault/                       # Vault section
+│   ├─ index.html               # Vault main page
+│   └─ assets/
+│       ├─ vault.css            # Vault CSS
+│       └─ vault.js             # Vault JS
+│
+├─ garden/                      # Garden section
+│   ├─ index.html               # Garden main page
+│   └─ assets/
+│       ├─ garden.css           # Garden CSS
+│       └─ garden.js            # Garden JS
+│
+├─ code-lab/                    # Code Lab section
+│   ├─ index.html               # Code Lab main page
+│   └─ assets/
+│       ├─ codelab.css          # Code Lab CSS
+│       └─ codelab.js           # Code Lab JS
+│
+└─ upload-ui/                   # Upload UI section
+    ├─ index.html               # Upload page
+    └─ assets/
+        ├─ upload.css           # Upload CSS
+        └─ upload.js            # Upload JS
+```
 
 ---
 
 ## ⚡ Usage
 
 1. Clone the repository:  
-```bash git clone https://github.com/<your-username>/vault-and-garden.git
-Open index.html or index2.html in your browser to explore.
+```bash
+git clone https://github.com/<your-username>/vault-and-garden.git
+```
 
-Vault and Code Lab automatically fetch your Playbook assets.
+2. Open `index.html` or `index2.html` in your browser to explore.  
+3. Vault and Code Lab automatically fetch your Playbook assets.  
+4. Use Upload UI to add more files dynamically.
 
-Use Upload UI to add more files dynamically.
+---
 
-🛠️ Technologies Used
-HTML5 & CSS3
+## 🛠️ Technologies Used
 
-JavaScript (ES6+)
+- HTML5 & CSS3  
+- JavaScript (ES6+)  
+- GitHub Pages hosting  
+- Playbook for cloud storage and asset management
 
-GitHub Pages hosting
+---
 
-Playbook for cloud storage and asset management
+## 📂 Adding New Files
 
-📂 Adding New Files
-Go to Upload UI: /upload-ui/index.html.
+1. Go to **Upload UI**: `/upload-ui/index.html`.  
+2. Enter **file title**, **Playbook URL**, and **type** (image, video, PDF, code).  
+3. Click **Add to Vault** → File is added immediately.  
 
-Enter file title, Playbook URL, and type (image, video, PDF, code).
+> Tip: You can also edit `vault/assets/vault.js` directly to preload files in Vault.
 
-Click Add to Vault → File is added immediately.
+---
 
-Tip: You can also edit vault/assets/vault.js directly to preload files in Vault.
+## 📌 License
 
-📌 License
 MIT License © 2025 Vault & Garden
 
+---
+
+## 🚀 Screenshots
+
+*(Optional: Add screenshots of Home, Garden, Vault, and Code Lab here for better presentation)*
