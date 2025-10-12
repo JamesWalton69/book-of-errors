@@ -1,1 +1,13 @@
-body { background:#222; }
+body { margin:0; font-family:'Poppins',sans-serif; background:#111; color:#eee; }
+header{ text-align:center; padding:1rem; background:#111; position:sticky; top:0; }
+header nav a{ margin:0 1rem; color:#ffcc00; text-decoration:none; }
+header nav a:hover{ color:#00d4ff; }
+header .logo{height:50px; margin-right:10px;}
+.container{max-width:900px;margin:2rem auto;padding:0 1rem;text-align:center;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:2rem;}
+.card{background:#222;padding:1rem;border-radius:10px;text-align:left;}
+.card h3{margin:0 0 0.5rem;}
+.card img, .card video, .card audio{width:100%;border-radius:10px;margin:0.5rem 0;}
+#searchBar{padding:0.5rem;width:60%;border-radius:5px;border:none;margin:0.5rem 0;}
+#randomBtn{padding:0.5rem 1rem;margin-left:1rem;background:#ffcc00;border:none;border-radius:5px;color:#0d0d0d;cursor:pointer;}
+#randomBtn:hover{background:#00d4ff;color:#fff;}
