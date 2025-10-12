@@ -1,0 +1,123 @@
+/* Vault Styles */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #0d0d0d;
+    color: #eee;
+}
+
+header {
+    background-color: #111;
+    padding: 1.5rem;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header nav a {
+    margin: 0 1rem;
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+header nav a:hover {
+    color: #00d4ff;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.card {
+    background: linear-gradient(145deg, #1a1a1a, #111);
+    border-radius: 15px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    transform: scale(0.95);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+}
+
+.card h3 {
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+    color: #ffcc00;
+}
+
+.card a {
+    color: #00d4ff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.card a:hover {
+    color: #ffcc00;
+}
+
+/* Random Vault Button */
+#randomBtn {
+    display: block;
+    margin: 2rem auto;
+    padding: 12px 25px;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#randomBtn:hover {
+    background-color: #00d4ff;
+    color: #fff;
+}
+
+/* Search bar */
+#searchBar {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    margin: 0 auto 1rem auto;
+    display: block;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background-color: #1a1a1a;
+    color: #eee;
+}
+
+#searchBar::placeholder {
+    color: #aaa;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.6;
+    background-color: #111;
+    margin-top: 2rem;
+}
