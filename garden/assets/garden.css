@@ -1,1 +1,83 @@
-body { background: linear-gradient(135deg,#00d4ff,#ffcc00); }
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #00d4ff, #ffcc00);
+    color: #0d0d0d;
+    overflow-x: hidden;
+}
+
+header {
+    background-color: rgba(17,17,17,0.9);
+    padding: 1.5rem;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header nav a {
+    margin: 0 1rem;
+    color: #0d0d0d;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav a:hover {
+    color: #ffcc00;
+}
+
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.quote {
+    font-size: 1.3rem;
+    margin: 2rem 0;
+    padding: 1rem 2rem;
+    background-color: rgba(255,255,255,0.2);
+    border-left: 5px solid #ffcc00;
+    border-radius: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.quote.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#zenBtn {
+    display: block;
+    margin: 2rem auto;
+    padding: 10px 20px;
+    background-color: #0d0d0d;
+    color: #ffcc00;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#zenBtn:hover {
+    background-color: #ffcc00;
+    color: #0d0d0d;
+}
+
+.garden-images img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.6;
+    background-color: rgba(17,17,17,0.9);
+    margin-top: 2rem;
+}
