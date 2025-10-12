@@ -1,41 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vault</title>
-    <link rel="stylesheet" href="../assets/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vault</title>
+<link rel="stylesheet" href="assets/vault.css">
 </head>
 <body>
-    <header>
-        <h1>Vault</h1>
-        <nav>
-            <a href="../index.html">Home</a>
-            <a href="../garden/index.html">Garden</a>
-        </nav>
-    </header>
-    <div class="container">
-        <h2>Your Files & Discoveries</h2>
-        <div class="grid">
-            <!-- Example Cards — Replace links with your Playbook URLs -->
-            <div class="card">
-                <h3>File 1</h3>
-                <a href="#" target="_blank">Open / Download</a>
-            </div>
-            <div class="card">
-                <h3>File 2</h3>
-                <a href="#" target="_blank">Open / Download</a>
-            </div>
-            <div class="card">
-                <h3>File 3</h3>
-                <a href="#" target="_blank">Open / Download</a>
-            </div>
-            <div class="card">
-                <h3>File 4</h3>
-                <a href="#" target="_blank">Open / Download</a>
-            </div>
-        </div>
+<header>
+    <h1>Vault</h1>
+    <nav>
+        <a href="../index.html">Home</a>
+        <a href="../garden/index.html">Garden</a>
+    </nav>
+</header>
+
+<div class="container">
+    <input type="text" id="searchBar" placeholder="Search Vault Files...">
+    <button id="randomBtn">Open Random Vault File</button>
+
+    <div class="grid" id="vaultGrid">
+        <!-- Vault files will be populated by JS -->
     </div>
-    <footer>© 2025 Vault & Garden</footer>
+</div>
+
+<footer>© 2025 Vault & Garden</footer>
+<script src="assets/vault.js"></script>
 </body>
 </html>
+
+
