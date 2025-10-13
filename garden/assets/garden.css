@@ -1,13 +1,13 @@
 body {
-    margin: 0;
+    margin: 1;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #00d4ff, #ffcc00);
+    background: solid(#ffcc00);
     color: #0d0d0d;
     overflow-x: hidden;
 }
 
 header {
-    background-color: rgba(17,17,17,0.9);
+    background-color: rgba(117, 117, 117, 0.9);
     padding: 1.5rem;
     text-align: center;
     position: sticky;
@@ -17,7 +17,7 @@ header {
 
 header nav a {
     margin: 0 1rem;
-    color: #0d0d0d;
+    color: #f1ffb3;
     text-decoration: none;
     font-weight: bold;
 }
