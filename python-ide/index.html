@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python IDE - VaultAndGarden</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzMzNzNkYyIgZD0iTTEyIDJMMjIgNy41djlMMTIgMjJsMi01VjlsOC0zLjVMMTIgMnoiLz48L3N2Zz4=">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="python-logo">🐍</div>
+            <h2>Python Browser IDE</h2>
+            <div class="loading-spinner"></div>
+            <p id="loading-status">Initializing Pyodide...</p>
+            <div class="loading-progress">
+                <div id="loading-bar" class="loading-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main IDE Interface -->
+    <div id="ide-container" class="ide-container hidden">
+        <!-- Top Toolbar -->
+        <div class="toolbar">
+            <div class="toolbar-left">
+                <button id="new-file-btn" class="toolbar-btn" title="New File (Ctrl+N)">
+                    <svg width="16" height="16" viewBox="0 0 16 16">
+                        <path fill="currentColor" d="M9 7V2L14 7h-5zM2 2v12h12V8H8V2H2z"/>
+                    </svg>
+                    New
+                </button>
+                <button id="save-btn" class="toolbar-btn" title="Save (Ctrl+S)">
+                    <svg width="16" height="16" viewBox="0 0 16 16">
+                        <path fill="currentColor" d="M2 1v14h12V4l-3-3H2zm9 13H5V8h6v6zm-1-7H6v5h4V7z"/>
+                    </svg>
+                    Save
+                </button>
+                <div class="toolbar-separator"></div>
+                <button id="run-btn" class="toolbar-btn run-btn" title="Run Code (Ctrl+Enter)">
+                    <svg width="16" height="16" viewBox="0 0 16 16">
+                        <path fill="currentColor" d="M3 2v12l10-6L3 2z"/>
+                    </svg>
+                    Run
+                </button>
+                <button id="stop-btn" class="toolbar-btn stop-btn hidden" title="Stop Execution">
+                    <svg width="16" height="16" viewBox="0 0 16 16">
+                        <rect fill="currentColor" x="4" y="4" width="8" height="8"/>
+                    </svg>
+                    Stop
+                </button>
+            </div>
+            <div class="toolbar-center">
+                <div class="execution-status">
+                    <span id="status-indicator" class="status-indicator ready">●</span>
+                    <span id="status-text">Ready</span>
+                </div>
+            </div>
+            <div class="toolbar-right">
+                <button id="packages-btn" class="toolbar-btn" title="Package Manager">
+                    <svg width="16" height="16" viewBox="0 0 16 16">
+                        <path fill="currentColor" d="M8 1L2 4v8l6 3 6-3V4L8 1zM7 5.5L3.5 4 8 2l4.5 2L9 5.5v5L8 11l-1-.5V5.5z"/>
+                    </svg>
+                    Packages
+                </button>
+                <button id="settings-btn" class="toolbar-btn" title="Settings">
+                    <svg width="16" height="16" viewBox="0 0 16 16">
+                        <path fill="currentColor" d="M8 12a4 4 0 100-8 4 4 0 000 8zM6.5 8a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"/>
+                        <path fill="currentColor" d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"/>
+                    </svg>
+                    Settings
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <div id="sidebar" class="sidebar">
+                <div class="sidebar-header">
+                    <h3>Files</h3>
+                    <button id="toggle-sidebar" class="sidebar-toggle">
+                        <svg width="16" height="16" viewBox="0 0 16 16">
+                            <path fill="currentColor" d="M6 3L10 8L6 13V3z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="file-explorer" id="file-explorer">
+                    <!-- File tree will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Editor Area -->
+            <div class="editor-area">
+                <!-- Tab Bar -->
+                <div id="tab-bar" class="tab-bar">
+                    <!-- Tabs will be populated by JavaScript -->
+                </div>
+                
+                <!-- Monaco Editor Container -->
+                <div id="editor-container" class="editor-container">
+                    <!-- Monaco editor will be initialized here -->
+                </div>
+
+                <!-- No Files Message -->
+                <div id="no-files-message" class="no-files-message hidden">
+                    <div class="welcome-content">
+                        <h2>Welcome to Python Browser IDE</h2>
+                        <p>Create a new Python file to get started coding!</p>
+                        <button class="btn btn--primary" onclick="window.fileManager.createFile('main.py')">
+                            Create main.py
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Console Panel -->
+        <div id="console-panel" class="console-panel">
+            <div class="console-header">
+                <div class="console-tabs">
+                    <button class="console-tab active" data-tab="output">Output</button>
+                    <button class="console-tab" data-tab="terminal">Terminal</button>
+                </div>
+                <div class="console-actions">
+                    <button id="clear-console" class="console-btn" title="Clear Output">
+                        <svg width="14" height="14" viewBox="0 0 16 16">
+                            <path fill="currentColor" d="M2 2h12v2H2V2zm0 3h12v9H2V5z"/>
+                        </svg>
+                    </button>
+                    <button id="resize-console" class="console-btn" title="Resize Console">
+                        <svg width="14" height="14" viewBox="0 0 16 16">
+                            <path fill="currentColor" d="M16 3H0V1h16v2zM0 13h16v2H0v-2z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="console-content">
+                <div id="output-content" class="console-tab-content active">
+                    <div id="console-output" class="console-output">
+                        <div class="console-line welcome">
+                            <span class="console-timestamp">[Ready]</span>
+                            <span class="console-message">Python Browser IDE initialized. Ready to run code! 🐍</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="terminal-content" class="console-tab-content">
+                    <div class="terminal-interface">
+                        <div id="terminal-output" class="terminal-output">
+                            <div class="terminal-line">
+                                <span class="terminal-prompt">&gt;&gt;&gt; </span>
+                                <span class="terminal-text">Python 3.11 (Pyodide) ready</span>
+                            </div>
+                        </div>
+                        <div class="terminal-input-area">
+                            <span class="terminal-prompt">&gt;&gt;&gt; </span>
+                            <input type="text" id="terminal-input" class="terminal-input" placeholder="Enter Python code...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Settings</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-section">
+                    <h4>Editor</h4>
+                    <div class="setting-group">
+                        <label for="theme-select">Theme:</label>
+                        <select id="theme-select" class="form-control">
+                            <option value="vs-dark">Dark</option>
+                            <option value="vs">Light</option>
+                        </select>
+                    </div>
+                    <div class="setting-group">
+                        <label for="font-size-slider">Font Size:</label>
+                        <input type="range" id="font-size-slider" min="10" max="24" value="14" class="slider">
+                        <span id="font-size-value">14px</span>
+                    </div>
+                    <div class="setting-group">
+                        <label>
+                            <input type="checkbox" id="auto-save-checkbox" checked>
+                            Auto-save files
+                        </label>
+                    </div>
+                    <div class="setting-group">
+                        <label>
+                            <input type="checkbox" id="word-wrap-checkbox">
+                            Word wrap
+                        </label>
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h4>Execution</h4>
+                    <div class="setting-group">
+                        <label>
+                            <input type="checkbox" id="clear-console-checkbox">
+                            Clear console before run
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Package Manager Modal -->
+    <div id="packages-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Package Manager</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="package-install">
+                    <h4>Install Package</h4>
+                    <div class="install-form">
+                        <input type="text" id="package-name" class="form-control" placeholder="Enter package name (e.g., numpy)">
+                        <button id="install-package" class="btn btn--primary">Install</button>
+                    </div>
+                </div>
+                <div class="popular-packages">
+                    <h4>Popular Packages</h4>
+                    <div class="package-grid">
+                        <button class="package-btn" data-package="numpy">numpy</button>
+                        <button class="package-btn" data-package="pandas">pandas</button>
+                        <button class="package-btn" data-package="matplotlib">matplotlib</button>
+                        <button class="package-btn" data-package="scipy">scipy</button>
+                        <button class="package-btn" data-package="sympy">sympy</button>
+                        <button class="package-btn" data-package="requests">requests</button>
+                    </div>
+                </div>
+                <div class="installed-packages">
+                    <h4>Installed Packages</h4>
+                    <div id="installed-packages-list" class="packages-list">
+                        <div class="package-item">Python 3.11 (built-in)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resize Handle -->
+    <div id="console-resize-handle" class="resize-handle"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.45.0/min/vs/loader.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.28.0/full/pyodide.js"></script>
+    <script src="pyodide-manager.js"></script>
+    <script src="file-manager.js"></script>
+    <script src="editor-manager.js"></script>
+    <script src="app.js"></script>
+
+    <!-- Keyboard Shortcuts Info -->
+    <div class="shortcuts-info hidden">
+        <kbd>Ctrl+Enter</kbd> Run Code
+        <kbd>Ctrl+S</kbd> Save
+        <kbd>Ctrl+N</kbd> New File
+        <kbd>Ctrl+/</kbd> Comment
+    </div>
+</body>
+</html>

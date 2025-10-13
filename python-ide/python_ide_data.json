@@ -1,0 +1,98 @@
+{
+  "ide_components": {
+    "core_technologies": {
+      "pyodide": {
+        "description": "Python distribution for browser using WebAssembly",
+        "features": [
+          "Runs full CPython in browser",
+          "Supports NumPy, Pandas, Matplotlib",
+          "JavaScript-Python bridge",
+          "Package installation via micropip",
+          "No server required"
+        ],
+        "cdn_url": "https://cdn.jsdelivr.net/pyodide/v0.28.0/full/pyodide.js",
+        "setup_example": "\n// Load Pyodide\nlet pyodide = await loadPyodide();\n\n// Run Python code\nlet result = pyodide.runPython(`\nimport sys\nprint(f\"Python {sys.version}\")\nresult = 2 + 3\nresult\n`);\nconsole.log(result); // Output: 5\n"
+      },
+      "monaco_editor": {
+        "description": "VS Code's browser editor component",
+        "features": [
+          "Syntax highlighting for 110+ languages",
+          "IntelliSense code completion",
+          "Multiple themes",
+          "Code folding and navigation",
+          "Find/replace with regex",
+          "Multiple cursors"
+        ],
+        "npm_package": "@monaco-editor/react",
+        "setup_example": "\nimport Editor from '@monaco-editor/react';\n\n<Editor\n  height=\"400px\"\n  language=\"python\"\n  theme=\"vs-dark\"\n  value={code}\n  onChange={handleCodeChange}\n/>\n"
+      },
+      "ace_editor": {
+        "description": "High performance web code editor",
+        "features": [
+          "45+ language modes",
+          "24+ themes",
+          "Vim/Emacs key bindings",
+          "Code folding",
+          "Live syntax checking",
+          "Drag and drop"
+        ],
+        "setup": "Lightweight alternative to Monaco"
+      },
+      "codemirror": {
+        "description": "Versatile code editor component",
+        "features": [
+          "Modular architecture",
+          "Multiple selections",
+          "Collaborative editing",
+          "Syntax highlighting",
+          "Autocompletion",
+          "Mobile support"
+        ]
+      }
+    },
+    "key_features": [
+      "Code editing with syntax highlighting",
+      "Real-time Python execution",
+      "File management system",
+      "Output/console display",
+      "Package installation",
+      "Code sharing/saving",
+      "Multiple tabs/sessions",
+      "Debugging capabilities",
+      "Autocomplete/IntelliSense",
+      "Customizable themes"
+    ],
+    "architecture_components": [
+      "Frontend UI (React/HTML/CSS/JS)",
+      "Code Editor Component (Monaco/Ace/CodeMirror)",
+      "Python Runtime (Pyodide)",
+      "File System (Virtual/Browser Storage)",
+      "Output Console",
+      "Package Manager (micropip)",
+      "State Management",
+      "Theme System"
+    ],
+    "implementation_steps": [
+      "Set up basic HTML structure",
+      "Integrate code editor (Monaco recommended)",
+      "Load Pyodide runtime",
+      "Create Python execution engine",
+      "Build file management system",
+      "Add output/console display",
+      "Implement saving/loading",
+      "Add themes and customization",
+      "Create responsive layout",
+      "Add advanced features"
+    ]
+  },
+  "reference_ides": {
+    "replit": "Full-featured online IDE with collaboration",
+    "python_fiddle": "Pyodide-based online Python playground",
+    "programiz": "Simple online Python compiler",
+    "w3schools": "Basic Python tryit editor",
+    "python_tutor": "Educational Python visualizer",
+    "codesandbox": "Web development focused IDE",
+    "codepen": "Frontend development playground",
+    "glitch": "Full-stack web app development"
+  }
+}
