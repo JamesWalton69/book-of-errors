@@ -3,21 +3,20 @@ import React from 'react';
 
 const Logo: React.FC = () => (
   <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 2L2 7V17L12 22L22 17V7L12 2Z" stroke="#7aa2f7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M16.5 14.5L12 12L7.5 14.5" stroke="#9ece6a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M12 22V12" stroke="#7aa2f7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M22 7L12 12" stroke="#7aa2f7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M2 7L12 12" stroke="#7aa2f7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M14 15.5C14 14.1193 15.1193 13 16.5 13H19V11H16.5C13.4624 11 11 13.4624 11 16.5V18H13V16.5C13 15.6716 13.6716 15 14.5 15L14 15.5Z" fill="#f7768e"/>
+    <path d="M10 8.5C10 9.88071 8.88071 11 7.5 11H5V13H7.5C10.5376 13 13 10.5376 13 7.5V6H11V7.5C11 8.32843 10.3284 9 9.5 9L10 8.5Z" fill="#7aa2f7"/>
+    <rect x="2" y="2" width="20" height="20" rx="4" stroke="#c0caf5" strokeWidth="1.5"/>
   </svg>
 );
 
 
 export const Header: React.FC = () => {
   return (
-    <header className="flex items-center p-3 bg-secondary border-b border-gray-700 shadow-md flex-shrink-0">
+    <header className="bg-secondary p-3 flex items-center shadow-md z-10 border-b border-gray-700">
       <Logo />
-      <h1 className="text-xl font-bold ml-3 text-text-primary tracking-wider">PyForge IDE</h1>
-      <span className="ml-2 text-xs text-accent bg-accent/20 px-2 py-0.5 rounded-full">Gemini Powered</span>
+      <h1 className="text-xl font-bold ml-3 text-text-primary tracking-wider">
+        PyCode <span className="text-accent/80">Cloud IDE</span>
+      </h1>
     </header>
   );
 };

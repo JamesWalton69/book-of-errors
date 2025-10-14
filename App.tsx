@@ -1,142 +1,92 @@
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Header } from './components/Header';
-import { FileExplorer } from './components/FileExplorer';
 import { EditorPanel } from './components/EditorPanel';
-import { Output } from './components/Output';
-import { runPythonCode } from './services/geminiService';
-import type { SavedFile } from './types';
-import { initialCode } from './constants';
+import { ConsolePanel } from './components/ConsolePanel';
+import { SaveModal } from './components/SaveModal';
+import { LoadModal } from './components/LoadModal';
+import { executePythonCode } from './services/geminiService';
 
 const App: React.FC = () => {
-  const [files, setFiles] = useState<SavedFile[]>([]);
-  const [activeFileId, setActiveFileId] = useState<string | null>(null);
-  const [code, setCode] = useState<string>(initialCode);
+  const [code, setCode] = useState<string>('print("Hello, PyCode Cloud!")');
   const [output, setOutput] = useState<string>('');
-  const [isRunning, setIsRunning] = useState<boolean>(false);
-
-  useEffect(() => {
-    try {
-      const savedFilesRaw = localStorage.getItem('pyforge_files');
-      if (savedFilesRaw) {
-        const savedFiles = JSON.parse(savedFilesRaw);
-        if (Array.isArray(savedFiles) && savedFiles.length > 0) {
-          setFiles(savedFiles);
-          const lastActiveId = localStorage.getItem('pyforge_active_id');
-          const fileToActivate = savedFiles.find(f => f.id === lastActiveId) || savedFiles[0];
-          setActiveFileId(fileToActivate.id);
-          setCode(fileToActivate.code);
-        } else {
-          handleNewFile();
-        }
-      } else {
-        handleNewFile();
-      }
-    } catch (error) {
-      console.error("Failed to load files from localStorage:", error);
-      handleNewFile();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isSaveModalOpen, setIsSaveModalOpen] = useState<boolean>(false);
+  const [isLoadModalOpen, setIsLoadModalOpen] = useState<boolean>(false);
+  const [savedCodeId, setSavedCodeId] = useState<string | null>(null);
 
   const handleRun = useCallback(async () => {
-    setIsRunning(true);
-    setOutput('');
+    setIsLoading(true);
+    setOutput('Executing code...');
     try {
-      const result = await runPythonCode(code);
+      const result = await executePythonCode(code);
       setOutput(result);
     } catch (error) {
-      setOutput(`Error: ${error instanceof Error ? error.message : String(error)}`);
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred.';
+      setOutput(`Error: ${errorMessage}`);
     } finally {
-      setIsRunning(false);
+      setIsLoading(false);
     }
   }, [code]);
 
-  const updateActiveFileCode = (newCode: string) => {
-    setCode(newCode);
-    if (activeFileId) {
-      const updatedFiles = files.map(file =>
-        file.id === activeFileId ? { ...file, code: newCode } : file
-      );
-      setFiles(updatedFiles);
-      localStorage.setItem('pyforge_files', JSON.stringify(updatedFiles));
+  const handleSave = useCallback(() => {
+    if (!code.trim()) {
+      setOutput('Cannot save empty code.');
+      return;
     }
-  };
+    const id = `pycode-${Date.now().toString(36)}-${Math.random().toString(36).substring(2, 7)}`;
+    localStorage.setItem(id, code);
+    setSavedCodeId(id);
+    setIsSaveModalOpen(true);
+  }, [code]);
 
-  const handleSelectFile = (id: string) => {
-    const file = files.find(f => f.id === id);
-    if (file) {
-      setActiveFileId(id);
-      setCode(file.code);
-      localStorage.setItem('pyforge_active_id', id);
+  const handleLoad = useCallback((id: string) => {
+    if (!id.trim()) {
+      setOutput('Please enter a valid save ID.');
+      return;
     }
-  };
-
-  const handleNewFile = () => {
-    const newFile: SavedFile = {
-      id: `file_${Date.now()}`,
-      name: `new_script_${files.length + 1}.py`,
-      code: '# Start your new Python script here!\nprint("Hello, PyForge!")',
-    };
-    const updatedFiles = [...files, newFile];
-    setFiles(updatedFiles);
-    setActiveFileId(newFile.id);
-    setCode(newFile.code);
-    localStorage.setItem('pyforge_files', JSON.stringify(updatedFiles));
-    localStorage.setItem('pyforge_active_id', newFile.id);
-  };
-  
-  const handleDeleteFile = (id: string) => {
-    if (files.length <= 1) {
-        alert("Cannot delete the last file.");
-        return;
+    const savedCode = localStorage.getItem(id);
+    if (savedCode) {
+      setCode(savedCode);
+      setOutput(`Successfully loaded code from ID: ${id}`);
+    } else {
+      setOutput(`Error: No code found for ID: ${id}`);
     }
-    const updatedFiles = files.filter(f => f.id !== id);
-    setFiles(updatedFiles);
-    localStorage.setItem('pyforge_files', JSON.stringify(updatedFiles));
+    setIsLoadModalOpen(false);
+  }, []);
 
-    if (activeFileId === id) {
-        const newActiveFile = updatedFiles[0];
-        if (newActiveFile) {
-            handleSelectFile(newActiveFile.id);
-        } else {
-            setActiveFileId(null);
-            setCode('');
-        }
-    }
-  };
-
-  const handleRenameFile = (id: string, newName: string) => {
-    const updatedFiles = files.map(file =>
-      file.id === id ? { ...file, name: newName } : file
-    );
-    setFiles(updatedFiles);
-    localStorage.setItem('pyforge_files', JSON.stringify(updatedFiles));
-  };
-
+  const handleClear = useCallback(() => {
+    setCode('');
+    setOutput('');
+  }, []);
 
   return (
-    <div className="flex flex-col h-screen bg-primary font-mono">
+    <div className="flex flex-col h-screen bg-primary font-sans">
       <Header />
       <main className="flex flex-1 overflow-hidden">
-        <FileExplorer
-          files={files}
-          activeFileId={activeFileId}
-          onSelectFile={handleSelectFile}
-          onNewFile={handleNewFile}
-          onDeleteFile={handleDeleteFile}
-          onRenameFile={handleRenameFile}
-        />
-        <div className="flex flex-1 flex-col w-3/4">
+        <div className="flex flex-col w-full md:flex-row">
           <EditorPanel
             code={code}
-            onCodeChange={updateActiveFileCode}
+            setCode={setCode}
             onRun={handleRun}
-            isRunning={isRunning}
+            onSave={handleSave}
+            onLoad={() => setIsLoadModalOpen(true)}
+            onClear={handleClear}
+            isLoading={isLoading}
           />
-          <Output output={output} isRunning={isRunning} />
+          <ConsolePanel output={output} />
         </div>
       </main>
+      <SaveModal
+        isOpen={isSaveModalOpen}
+        onClose={() => setIsSaveModalOpen(false)}
+        codeId={savedCodeId}
+      />
+      <LoadModal
+        isOpen={isLoadModalOpen}
+        onClose={() => setIsLoadModalOpen(false)}
+        onLoad={handleLoad}
+      />
     </div>
   );
 };

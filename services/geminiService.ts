@@ -9,18 +9,17 @@ if (!API_KEY) {
 
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
-export async function runPythonCode(code: string): Promise<string> {
+export async function executePythonCode(code: string): Promise<string> {
   const prompt = `
-    You are a Python interpreter. Execute the following Python code and return ONLY the raw standard output (stdout).
-    If there is any error (stderr), return ONLY the raw error message.
-    Do not add any explanation, commentary, markdown formatting, or any extra text like "stdout:" or "stderr:".
-    Just return the direct output as if it were run in a real terminal.
+You are a Python interpreter. Execute the following Python code and return ONLY the standard output.
+Do not add any explanation, commentary, or markdown formatting like \`\`\`python.
+If the code produces an error, return ONLY the standard error traceback.
 
-    Code to execute:
-    \`\`\`python
-    ${code}
-    \`\`\`
-  `;
+Code:
+---
+${code}
+---
+`;
 
   try {
     const response = await ai.models.generateContent({
@@ -28,15 +27,15 @@ export async function runPythonCode(code: string): Promise<string> {
       contents: prompt,
       config: {
         temperature: 0,
-        // Disable thinking to get faster, more direct interpreter-like behavior
-        thinkingConfig: { thinkingBudget: 0 } 
+        // Disable thinking for faster, more direct execution simulation
+        thinkingConfig: { thinkingBudget: 0 }
       }
     });
     return response.text.trim();
   } catch (error) {
-    console.error("Error executing code with Gemini:", error);
+    console.error("Error executing code with Gemini API:", error);
     if (error instanceof Error) {
-        return `An API error occurred: ${error.message}`;
+        return `API Error: ${error.message}`;
     }
     return "An unknown API error occurred.";
   }
