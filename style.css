@@ -89,3 +89,111 @@ footer {
   font-size: 0.8rem;
   color: #444;
 }
+#error-feed {
+  width: 80%;
+  margin: 3rem auto;
+  background: #090909;
+  padding: 1rem;
+  border-left: 3px solid #a00;
+  min-height: 50vh;
+  font-size: 0.9rem;
+  color: #b30000;
+  box-shadow: 0 0 15px #900;
+  overflow-y: hidden;
+}
+
+.error-line {
+  margin: 0.3rem 0;
+  opacity: 0;
+  animation: fadeIn 0.8s forwards;
+}
+
+.error-line:nth-child(odd) {
+  color: #ff4444;
+}
+.error-line:nth-child(even) {
+  color: #ffb3b3;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* === Static Overlay & Flicker Effect === */
+
+.screen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    rgba(255,255,255,0.03) 0px,
+    rgba(255,255,255,0.03) 1px,
+    rgba(0,0,0,0.05) 2px
+  );
+  mix-blend-mode: lighten;
+  animation: staticFlicker 0.3s infinite;
+  z-index: 999;
+  opacity: 0.15;
+}
+
+@keyframes staticFlicker {
+  0% { opacity: 0.1; transform: scale(1.001); }
+  10% { opacity: 0.2; }
+  25% { opacity: 0.05; transform: scale(1.002); }
+  50% { opacity: 0.18; }
+  75% { opacity: 0.12; }
+  100% { opacity: 0.1; transform: scale(1); }
+}
+
+/* optional subtle glow pulse */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,0,0,0.03) 0%, transparent 70%);
+  mix-blend-mode: overlay;
+  animation: glowPulse 6s infinite alternate;
+  pointer-events: none;
+  z-index: 998;
+}
+
+@keyframes glowPulse {
+  0% { opacity: 0.1; }
+  100% { opacity: 0.3; }
+}
+/* === 404 TERMINAL === */
+
+.terminal {
+  background: #000;
+  color: #ff5555;
+  width: 80%;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-left: 3px solid #a00;
+  font-family: 'Fira Code', monospace;
+  box-shadow: 0 0 20px #700;
+}
+
+#terminal-output p {
+  margin: 0.3rem 0;
+  animation: fadeIn 1s forwards;
+}
+
+#terminal-input {
+  margin-top: 1rem;
+  color: #ff7777;
+  font-style: italic;
+}
+
+/* glitch end flash */
+.glitch-end {
+  animation: endFlash 0.2s steps(2, start) 10;
+}
+
+@keyframes endFlash {
+  0% { background-color: #000; color: #f00; }
+  100% { background-color: #f00; color: #000; }
+}
