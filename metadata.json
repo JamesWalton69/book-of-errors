@@ -1,5 +1,0 @@
-{
-  "name": "PyCode Cloud IDE",
-  "description": "A web-based Python IDE that allows you to write, run, and save your Python code directly in the browser. Features a cloud-saving mechanism (using local storage) so you can share and retrieve your code snippets without any login required.",
-  "requestFramePermissions": []
-}
