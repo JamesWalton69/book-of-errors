@@ -1,34 +1,43 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vault & Garden</title>
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PyForge IDE - Python in the Cloud</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'primary': '#1a1b26',
+              'secondary': '#24283b',
+              'accent': '#7aa2f7',
+              'text-primary': '#c0caf5',
+              'text-secondary': '#a9b1d6',
+              'green-accent': '#9ece6a',
+              'red-accent': '#f7768e',
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.24.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
 </head>
-<body>
-<header>
-    <img src="assets/logo-home.svg" alt="Vault & Garden Logo" class="logo">
-    <h1>Vault & Garden</h1>
-    <nav>
-        <a href="garden/index.html">Garden</a>
-        <a href="code-lab/index.html">Code Lab</a>
-        <a href="python-ide/index.html" class="btn btn-primary">
-        🐍 Try the Python IDE
-        </a>
-
-    </nav>
-</header>
-
-<div class="main-container">
-    <h2>Welcome to Vault & Garden</h2>
-    <p>Explore your files, images, PDFs, and experiment in Code Lab.</p>
-    <div class="home-images">
-        <img src="https://drive.google.com/uc?export=download&id=15MClXYf_zhYEoLpsOT5sPWKdEhJt6jka" alt="Home Image">
-    </div>
-</div>
-
-<footer>© 2025 Vault & Garden</footer>
-</body>
+  <body class="bg-primary text-text-primary">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>
