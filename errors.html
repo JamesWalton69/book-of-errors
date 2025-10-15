@@ -2,47 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <title>Errors — The Book of Errors</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Errors — The Archive</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="app.js"></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="page page-errors">
-  <header class="site-header">
-    <a class="logo" href="index.html">THE ARCHIVE</a>
+<body data-page="errors">
+  <div id="transition"></div>
+  <header class="nav">
+    <a class="brand glitch" data-glitch="The Book of Errors" href="index.html">The Book of Errors</a>
     <nav>
-      <ul class="nav-menu">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="functions.html" class="nav-link">Functions</a></li>
-        <li><a href="errors.html" class="nav-link">Errors</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
-      </ul>
+      <a href="functions.html" class="link">Functions</a>
+      <a href="errors.html" class="link active">Errors</a>
+      <a href="about.html" class="link">About</a>
     </nav>
   </header>
 
-  <main class="container">
-    <h2 class="page-title glitch-text">Error Console</h2>
+  <main class="wrap">
+    <p class="crumbs corrupt">docs / runtime / errors</p>
+    <h1 class="title">Runtime Anomalies</h1>
 
-    <div id="error-controls" class="error-controls">
-      <button id="generate-error" class="btn">Generate error</button>
-      <button id="clear-errors" class="btn ghost">Clear</button>
-      <label class="muted">Auto spawn:</label>
-      <input id="auto-spawn" type="checkbox">
-    </div>
-
-    <div id="error-output" class="error-output" aria-live="polite"></div>
-
-    <section class="watcher-pane">
-      <div class="watcher">
-        <div class="eye"></div>
-        <p class="watching-text">THE RUNTIME IS WATCHING</p>
-        <button class="btn" id="taunt-btn">Provoke</button>
-      </div>
-    </section>
+    <div class="console" id="err-console"></div>
+    <button class="btn" id="inject">Inject Error</button>
   </main>
 
-  <footer class="site-footer">
-    <small>© The Archive — Errors</small>
-  </footer>
+  <div id="eye"></div>
+  <script src="script.js"></script>
 </body>
 </html>
