@@ -2,40 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <title>About — The Book of Errors</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>About — The Archive</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="app.js"></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="page page-about">
-  <header class="site-header">
-    <a class="logo" href="index.html">THE ARCHIVE</a>
+<body data-page="about">
+  <div id="transition"></div>
+  <header class="nav">
+    <a class="brand glitch" data-glitch="The Book of Errors" href="index.html">The Book of Errors</a>
     <nav>
-      <ul class="nav-menu">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="functions.html" class="nav-link">Functions</a></li>
-        <li><a href="errors.html" class="nav-link">Errors</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
-      </ul>
+      <a href="functions.html" class="link">Functions</a>
+      <a href="errors.html" class="link">Errors</a>
+      <a href="about.html" class="link active">About</a>
     </nav>
   </header>
 
-  <main class="container">
-    <h2 class="page-title glitch-text">About the Archive</h2>
+  <main class="wrap">
+    <p class="crumbs corrupt">docs / about</p>
+    <h1 class="title">About this Documentation</h1>
 
-    <p>This site is a static horror documentation project. It's designed to run on GitHub Pages and other static hosts.</p>
+    <p class="rewrite" data-alt="We wrote this. We think.">This documentation describes a language for reliable systems.</p>
+    <p class="rewrite" data-alt="It describes you better than you describe it.">It aims to be clear, concise, and humane.</p>
+    <p class="rewrite" data-alt="You looked away and it changed.">Versioning follows semantic rules.</p>
 
-    <h3>Design Goals</h3>
-    <ul>
-      <li>Red-dominant color scheme (blood red primary)</li>
-      <li>Quick glitch transitions between pages</li>
-      <li>Interactive elements that reveal themselves</li>
-      <li>Errors that feel alive</li>
-    </ul>
+    <blockquote class="panel">
+      “If code is a mirror, who stands behind you when you compile?”
+    </blockquote>
   </main>
 
-  <footer class="site-footer">
-    <small>© The Archive — About</small>
-  </footer>
+  <div id="eye"></div>
+  <script src="script.js"></script>
 </body>
 </html>
