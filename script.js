@@ -176,3 +176,28 @@ if (document.body.dataset.page === 'about'){
     }, 2200 + Math.random()*1200);
   });
 }
+const audio = $('#horror-audio');
+const toggle = $('#music-toggle');
+const icon = $('#music-icon');
+let playing = false;
+
+function playMusic() {
+  audio.volume = 0.33;
+  audio.play();
+  playing = true;
+  icon.textContent = '🔊';
+}
+function pauseMusic() {
+  audio.pause();
+  playing = false;
+  icon.textContent = '🔈';
+}
+
+toggle?.addEventListener('click', () => {
+  playing ? pauseMusic() : playMusic();
+});
+
+// Auto-play on first user interaction for creepiness
+window.addEventListener('pointerdown', () => {
+  if (!playing) playMusic();
+}, {once: true});
