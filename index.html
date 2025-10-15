@@ -2,61 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <title>The Book of Errors</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Documentation — The Archive</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="app.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="page page-home">
-  <header class="site-header">
-    <a class="logo" href="index.html">THE ARCHIVE</a>
+<body data-page="index">
+  <div id="transition"></div>
+  <header class="nav">
+    <a class="brand glitch" data-glitch="The Book of Errors" href="index.html">The Book of Errors</a>
     <nav>
-      <ul class="nav-menu">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="functions.html" class="nav-link">Functions</a></li>
-        <li><a href="errors.html" class="nav-link">Errors</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
-      </ul>
+      <a href="functions.html" class="link">Functions</a>
+      <a href="errors.html" class="link">Errors</a>
+      <a href="about.html" class="link">About</a>
     </nav>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <h1 class="glitch-text">WELCOME BACK</h1>
-      <p class="lead">This repository records things that never should have been written.</p>
+  <main class="wrap">
+    <p class="crumbs">docs / index</p>
 
-      <div class="cta-row">
-        <a class="btn" href="functions.html">Browse functions</a>
-        <a class="btn ghost" href="errors.html">Open error console</a>
-      </div>
+    <h1 class="title flicker">A language that writes you back.</h1>
+    <p class="intro">
+      Welcome, developer. Initialize with caution. Outputs may persist beyond the console.
+    </p>
+
+    <section class="panel">
+      <h2>Quick Start</h2>
+      <pre class="code copyable" data-copy="let dread = 1; summon('the_watcher'); run();">
+<code id="type-seq">
+// install
+let fear = 0;
+init('silence');
+
+// compile
+whisper('hello?');
+
+// run
+bleed('it heard you.');
+</code></pre>
+      <button class="btn copy-btn" data-target=".copyable">Copy (safe)</button>
     </section>
 
-    <section class="cards">
-      <article class="card hover-reveal">
-        <h3>Archive Entry</h3>
-        <p class="preview">A short whisper... <span class="hidden-text">then a scream.</span></p>
-      </article>
-
-      <article class="card hover-reveal">
-        <h3>Active Watcher</h3>
-        <p class="preview">Something is reading these lines. <span class="hidden-text">It remembers you.</span></p>
-      </article>
-
-      <article class="card">
-        <h3>Hosting</h3>
-        <p>Static-ready — drop to GitHub Pages. Use these separate pages for a faster, scarier experience.</p>
-      </article>
+    <section class="panel hover-reveal">
+      <h2>Notes</h2>
+      <p>Variables are fragile. Handle <span class="hidden">their names are your names</span> with care.</p>
     </section>
 
-    <section class="mini-footer">
-      <p class="muted">If something flickers, it's not a bug. It's a note.</p>
+    <section class="terminal">
+      <div class="term-out" id="term-out">book@errors:~$ _</div>
+      <input id="term-in" placeholder="type help and press Enter" autocomplete="off">
     </section>
   </main>
 
-  <footer class="site-footer">
-    <small>© The Archive — Do not stare too long.</small>
-  </footer>
-
-  <!-- page transition overlay (inserted by JS when navigating) -->
+  <div id="eye"></div>
+  <script src="script.js"></script>
 </body>
 </html>
