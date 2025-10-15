@@ -1,56 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Book of Errors</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Documentation — The Archive</title>
   <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
 </head>
-<body>
-    <div class="screen-overlay"></div>
-
-  <div class="glitch-bg"></div>
-  <header>
-    <h1 class="glitch-text" data-text="The Book of Errors">The Book of Errors</h1>
-    <p class="tagline">A language that writes you back...</p>
+<body class="page page-home">
+  <header class="site-header">
+    <a class="logo" href="index.html">THE ARCHIVE</a>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="functions.html" class="nav-link">Functions</a></li>
+        <li><a href="errors.html" class="nav-link">Errors</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main>
-    <section class="code-block">
-      <pre><code>
-// The Book of Errors v0.0.1
-// created by: ????
-// documentation fragment 1
+  <main class="container">
+    <section class="hero">
+      <h1 class="glitch-text">WELCOME BACK</h1>
+      <p class="lead">This repository records things that never should have been written.</p>
 
-func bleed(time = "midnight") -> reflection {
-    print("Do not look at your screen for too long");
-    return mirror.self;
-}
-      </code></pre>
+      <div class="cta-row">
+        <a class="btn" href="functions.html">Browse functions</a>
+        <a class="btn ghost" href="errors.html">Open error console</a>
+      </div>
     </section>
 
-    <section class="desc">
-      <p>
-        The <b>bleed()</b> function creates an irreversible connection between your reflection and the code. 
-        Use with caution. Termination is... unpredictable.
-      </p>
+    <section class="cards">
+      <article class="card hover-reveal">
+        <h3>Archive Entry</h3>
+        <p class="preview">A short whisper... <span class="hidden-text">then a scream.</span></p>
+      </article>
+
+      <article class="card hover-reveal">
+        <h3>Active Watcher</h3>
+        <p class="preview">Something is reading these lines. <span class="hidden-text">It remembers you.</span></p>
+      </article>
+
+      <article class="card">
+        <h3>Hosting</h3>
+        <p>Static-ready — drop to GitHub Pages. Use these separate pages for a faster, scarier experience.</p>
+      </article>
     </section>
 
-    <section class="code-block">
-      <pre><code>
-// syntax test
-whisper("are you still here?");
-if (response == silence) {
-    summon("visitor");
-}
-      </code></pre>
+    <section class="mini-footer">
+      <p class="muted">If something flickers, it's not a bug. It's a note.</p>
     </section>
-
-    <footer>
-      <p>© 2025 The Book of Errors | page 1 of ???</p>
-    </footer>
   </main>
 
-  <script src="script.js"></script>
+  <footer class="site-footer">
+    <small>© The Archive — Do not stare too long.</small>
+  </footer>
+
+  <!-- page transition overlay (inserted by JS when navigating) -->
 </body>
 </html>

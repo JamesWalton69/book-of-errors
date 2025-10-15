@@ -1,67 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Runtime Log | The Book of Errors</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Errors — The Archive</title>
   <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
 </head>
-<body>
-    <div class="screen-overlay"></div>
-
-  <div class="glitch-bg"></div>
-  <header>
-    <h1 class="glitch-text" data-text="Runtime Log">Runtime Log</h1>
-    <p class="tagline">reading memory fragments...</p>
+<body class="page page-errors">
+  <header class="site-header">
+    <a class="logo" href="index.html">THE ARCHIVE</a>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="functions.html" class="nav-link">Functions</a></li>
+        <li><a href="errors.html" class="nav-link">Errors</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main id="error-feed">
-    <!-- errors will appear here dynamically -->
+  <main class="container">
+    <h2 class="page-title glitch-text">Error Console</h2>
+
+    <div id="error-controls" class="error-controls">
+      <button id="generate-error" class="btn">Generate error</button>
+      <button id="clear-errors" class="btn ghost">Clear</button>
+      <label class="muted">Auto spawn:</label>
+      <input id="auto-spawn" type="checkbox">
+    </div>
+
+    <div id="error-output" class="error-output" aria-live="polite"></div>
+
+    <section class="watcher-pane">
+      <div class="watcher">
+        <div class="eye"></div>
+        <p class="watching-text">THE RUNTIME IS WATCHING</p>
+        <button class="btn" id="taunt-btn">Provoke</button>
+      </div>
+    </section>
   </main>
 
-  <footer>
-    <p><a href="index.html">← return to main docs</a></p>
+  <footer class="site-footer">
+    <small>© The Archive — Errors</small>
   </footer>
-
-  <script>
-    const errorFeed = document.getElementById("error-feed");
-
-    const fakeErrors = [
-      "[ERROR 0x01] Memory leak in 'soul.exe'",
-      "[WARNING] The mirror variable is undefined",
-      "[RUNTIME] bleed() executed twice — consequences unknown",
-      "[DEBUG] Tracing reflection... reflection traced you back.",
-      "[INFO] Summoning stack overflow...",
-      "[ERROR 0x13] Cannot terminate 'visitor' process",
-      "[CRITICAL] File 'mind.sys' locked by unknown thread",
-      "[ERROR] Segmentation fault: self-awareness overflow",
-      "[WARNING] ghost() returned TRUE",
-      "[NOTICE] Silence detected at 03:00 AM",
-      "[CRITICAL] Your name was found in call stack",
-      "[FATAL] recursion in consciousness()"
-    ];
-
-    const secretWhispers = [
-      "it’s watching you type...",
-      "don’t press escape.",
-      "this log isn’t fake.",
-      "the process never ended.",
-      "your reflection doesn’t blink.",
-      "you shouldn’t be here."
-    ];
-
-    function addError() {
-      const msg = document.createElement("p");
-      msg.className = "error-line";
-      const text = Math.random() > 0.9
-        ? secretWhispers[Math.floor(Math.random() * secretWhispers.length)]
-        : fakeErrors[Math.floor(Math.random() * fakeErrors.length)];
-      msg.textContent = text;
-      errorFeed.appendChild(msg);
-      window.scrollTo(0, document.body.scrollHeight);
-    }
-
-    setInterval(addError, 1000);
-  </script>
 </body>
 </html>

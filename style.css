@@ -1,199 +1,145 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
-
-body {
-  background-color: #0a0a0a;
-  color: #e30000;
-  font-family: 'Fira Code', monospace;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+/* ---------- THE ARCHIVE — style.css ---------- */
+/* Red-dominant theme with sickly-green accents. Keep variables at top. */
+:root{
+  --bg: #070707;
+  --card-bg: #060606;
+  --primary-red: #ff0000;
+  --accent-green: #00ff41;
+  --text-main: #ffdddd;
+  --muted: #8a8a8a;
+  --glass: rgba(255,0,0,0.04);
+  --danger: #ff0000;
+  --radius: 12px;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace;
 }
 
-header {
-  text-align: center;
-  padding: 4rem 1rem 2rem;
+/* Base */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, #030303 0%, var(--bg) 100%);
+  color:var(--text-main);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+  min-height:100vh;
 }
 
-h1.glitch-text {
-  font-size: 3rem;
-  position: relative;
-  display: inline-block;
-  color: #e30000;
-  animation: flicker 3s infinite;
+/* Header */
+.site-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:1rem 1.25rem;
+  border-bottom:1px solid rgba(255,0,0,0.06);
+  position:sticky; top:0; backdrop-filter: blur(2px);
+  background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.25));
+  z-index:20;
+}
+.logo{color:var(--primary-red); font-weight:700; text-decoration:none; letter-spacing:1px}
+.nav-menu{list-style:none; padding:0; margin:0; display:flex; gap:0.5rem}
+.nav-menu .nav-link{
+  padding:0.35rem 0.6rem; border-radius:8px;
+  color:var(--accent-green); text-decoration:none; font-weight:600;
+}
+.nav-menu .nav-link:hover, .nav-menu .nav-link.active{
+  background: rgba(255,0,0,0.08);
+  color:var(--primary-red);
 }
 
-h1.glitch-text::before,
-h1.glitch-text::after {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  width: 100%;
-  color: #0ff;
-  clip: rect(0, 0, 0, 0);
-}
+/* Layout */
+.container{max-width:980px; margin:2.4rem auto; padding:0 1rem}
+.center{text-align:center}
+.page-title{margin:0 0 1rem}
 
-h1.glitch-text::before {
-  animation: glitchTop 2s infinite linear alternate-reverse;
-}
+/* Hero */
+.hero{padding:2rem; border-radius:16px; background: linear-gradient(180deg, rgba(255,0,0,0.02), transparent); box-shadow: 0 6px 30px rgba(0,0,0,0.6)}
+.lead{color: #ffcfcf}
+.cta-row{display:flex; gap:0.6rem; margin-top:1rem}
 
-h1.glitch-text::after {
-  animation: glitchBottom 1.5s infinite linear alternate-reverse;
-  color: #f00;
+/* Buttons */
+.btn{
+  display:inline-block; text-decoration:none; padding:0.6rem 0.9rem; border-radius:10px;
+  background: linear-gradient(180deg, rgba(255,0,0,0.08), rgba(255,0,0,0.03));
+  color:var(--primary-red); font-weight:700; border:1px solid rgba(255,0,0,0.12);
 }
+.btn.ghost{background:transparent; border:1px dashed rgba(255,0,0,0.06)}
+.btn--small{padding:0.35rem 0.6rem; font-size:0.9rem}
 
-@keyframes glitchTop {
-  0% { clip: rect(0, 900px, 0, 0); transform: translate(-2px, -2px); }
-  20% { clip: rect(0, 900px, 20px, 0); transform: translate(2px, 2px); }
-  40% { clip: rect(0, 900px, 5px, 0); transform: translate(-2px, 0); }
-  60% { clip: rect(0, 900px, 30px, 0); transform: translate(0, 2px); }
-  80% { clip: rect(0, 900px, 10px, 0); transform: translate(2px, -2px); }
-  100% { clip: rect(0, 900px, 0, 0); transform: translate(0); }
-}
+/* Cards */
+.cards{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:1rem; margin-top:1.2rem}
+.card{background:var(--card-bg); padding:1rem; border-radius:12px; border:1px solid rgba(255,0,0,0.04)}
+.card h3{margin:0 0 0.4rem}
+.preview{color:var(--muted)}
+.hidden-text{color:var(--primary-red); display:inline-block; opacity:0.999; /* shown by JS */}
 
-@keyframes glitchBottom {
-  0% { clip: rect(0, 900px, 0, 0); transform: translate(2px, 2px); }
-  25% { clip: rect(0, 900px, 25px, 0); transform: translate(-2px, 0); }
-  50% { clip: rect(0, 900px, 10px, 0); transform: translate(0, 2px); }
-  75% { clip: rect(0, 900px, 5px, 0); transform: translate(2px, -2px); }
-  100% { clip: rect(0, 900px, 0, 0); transform: translate(0); }
-}
+/* Functions grid */
+.functions-grid{display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.function-card{background:rgba(0,0,0,0.35); padding:1rem; border-radius:10px; border:1px solid rgba(255,0,0,0.05)}
+.function-card[data-danger="high"]{box-shadow: 0 6px 18px rgba(255,0,0,0.04); border-color:rgba(255,0,0,0.12)}
+.function-card h4{margin:0 0 0.5rem}
+.small{font-size:0.9rem; color:var(--muted)}
 
+/* Error console */
+.error-controls{display:flex; gap:0.6rem; align-items:center; margin-bottom:1rem}
+.error-output{min-height:160px; background:linear-gradient(180deg,rgba(0,0,0,0.5),rgba(0,0,0,0.6)); padding:1rem; border-radius:10px; border:1px solid rgba(255,0,0,0.06); font-family: var(--mono); color:var(--primary-red); overflow:auto}
+.error-line{padding:0.25rem 0; border-bottom: 1px dashed rgba(255,0,0,0.03)}
+
+/* Watcher */
+.watcher{margin-top:1.2rem; display:inline-flex; flex-direction:column; align-items:center; gap:0.6rem; padding:1rem; border-radius:12px; background: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.45)); border:1px solid rgba(255,0,0,0.06)}
+.eye{width:72px; height:40px; border-radius:40px; position:relative; background:linear-gradient(90deg,#111, #220); box-shadow: 0 6px 20px rgba(0,0,0,0.6), inset 0 -4px 20px rgba(255,0,0,0.02)}
+.eye::after{content:''; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:14px; height:14px; border-radius:50%; background:var(--primary-red); box-shadow:0 0 18px rgba(255,0,0,0.9)}
+.watching-text{font-weight:700; letter-spacing:0.8px; color:var(--accent-green)}
+
+/* Glitch / typing effects */
+.glitch-text{position:relative; font-weight:900; letter-spacing:2px; color:var(--primary-red)}
+.glitch-text::before, .glitch-text::after{content:attr(data-text); position:absolute; left:0; top:0; width:100%; height:100%; clip:rect(0 9999px 0 0); opacity:0.8}
+.glitch-text::before{transform:translate(2px, -1px); color:var(--primary-red); mix-blend-mode:screen}
+.glitch-text::after{transform:translate(-2px,1px); color:var(--accent-green); mix-blend-mode:difference}
 @keyframes flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    opacity: 1;
-  }
-  20%, 24%, 55% {
-    opacity: 0.3;
-  }
+  0%{opacity:1} 50%{opacity:0.2} 100%{opacity:1}
+}
+.flicker{animation:flicker 0.9s ease-in-out}
+
+/* popup */
+.horror-popup{
+  position:fixed; padding:0.6rem 0.9rem; border-radius:8px; background:rgba(5,5,5,0.95);
+  border:1px solid rgba(255,0,0,0.12); color:var(--primary-red); z-index:9999; pointer-events:none; opacity:0;
+  transform: translateY(-8px);
+}
+@keyframes popupFade {
+  0%{ opacity:0; transform:translateY(-8px) scale(0.98) }
+  10%{ opacity:1; transform:translateY(0) scale(1)}
+  85%{ opacity:1 }
+  100%{ opacity:0; transform:translateY(-28px) scale(0.98)}
 }
 
-.code-block {
-  background: #111;
-  border-left: 4px solid #e30000;
-  padding: 1rem;
-  margin: 2rem auto;
-  width: 80%;
-  box-shadow: 0 0 20px #e30000;
+/* page transition overlay */
+.page-transition-glitch{
+  position:fixed; inset:0; z-index:99999; pointer-events:none;
+  background: linear-gradient(90deg, rgba(255,0,0,0.06), rgba(0,0,0,0.45));
+  animation: pageGlitch 0.22s ease-in-out;
+}
+@keyframes pageGlitch{
+  0%{ opacity:0; transform:scaleY(0.98) skewX(0.6deg);}
+  50%{ opacity:1; transform:scaleY(1.02) skewX(-0.5deg) }
+  100%{ opacity:0; }
 }
 
-.desc {
-  width: 80%;
-  margin: 0 auto;
-  font-size: 1rem;
-  color: #ccc;
+/* small helpers */
+.muted{color:var(--muted)}
+.big{font-size:6.4rem; line-height:0.9}
+.center{display:flex; flex-direction:column; align-items:center; gap:1rem}
+
+/* accessibility: respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  .flicker, .glitch-text, .page-transition-glitch, .horror-popup { animation:none !important; transition:none !important; }
 }
 
-footer {
-  text-align: center;
-  padding: 2rem;
-  font-size: 0.8rem;
-  color: #444;
-}
-#error-feed {
-  width: 80%;
-  margin: 3rem auto;
-  background: #090909;
-  padding: 1rem;
-  border-left: 3px solid #a00;
-  min-height: 50vh;
-  font-size: 0.9rem;
-  color: #b30000;
-  box-shadow: 0 0 15px #900;
-  overflow-y: hidden;
-}
-
-.error-line {
-  margin: 0.3rem 0;
-  opacity: 0;
-  animation: fadeIn 0.8s forwards;
-}
-
-.error-line:nth-child(odd) {
-  color: #ff4444;
-}
-.error-line:nth-child(even) {
-  color: #ffb3b3;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-/* === Static Overlay & Flicker Effect === */
-
-.screen-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  background: repeating-linear-gradient(
-    rgba(255,255,255,0.03) 0px,
-    rgba(255,255,255,0.03) 1px,
-    rgba(0,0,0,0.05) 2px
-  );
-  mix-blend-mode: lighten;
-  animation: staticFlicker 0.3s infinite;
-  z-index: 999;
-  opacity: 0.15;
-}
-
-@keyframes staticFlicker {
-  0% { opacity: 0.1; transform: scale(1.001); }
-  10% { opacity: 0.2; }
-  25% { opacity: 0.05; transform: scale(1.002); }
-  50% { opacity: 0.18; }
-  75% { opacity: 0.12; }
-  100% { opacity: 0.1; transform: scale(1); }
-}
-
-/* optional subtle glow pulse */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle, rgba(255,0,0,0.03) 0%, transparent 70%);
-  mix-blend-mode: overlay;
-  animation: glowPulse 6s infinite alternate;
-  pointer-events: none;
-  z-index: 998;
-}
-
-@keyframes glowPulse {
-  0% { opacity: 0.1; }
-  100% { opacity: 0.3; }
-}
-/* === 404 TERMINAL === */
-
-.terminal {
-  background: #000;
-  color: #ff5555;
-  width: 80%;
-  margin: 3rem auto;
-  padding: 2rem;
-  border-left: 3px solid #a00;
-  font-family: 'Fira Code', monospace;
-  box-shadow: 0 0 20px #700;
-}
-
-#terminal-output p {
-  margin: 0.3rem 0;
-  animation: fadeIn 1s forwards;
-}
-
-#terminal-input {
-  margin-top: 1rem;
-  color: #ff7777;
-  font-style: italic;
-}
-
-/* glitch end flash */
-.glitch-end {
-  animation: endFlash 0.2s steps(2, start) 10;
-}
-
-@keyframes endFlash {
-  0% { background-color: #000; color: #f00; }
-  100% { background-color: #f00; color: #000; }
+/* responsive */
+@media (max-width:640px){
+  .hero { padding:1rem }
+  .big { font-size:4rem }
 }

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Functions — The Archive</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="app.js"></script>
+</head>
+<body class="page page-functions">
+  <header class="site-header">
+    <a class="logo" href="index.html">THE ARCHIVE</a>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="functions.html" class="nav-link">Functions</a></li>
+        <li><a href="errors.html" class="nav-link">Errors</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2 class="page-title glitch-text">Functions Index</h2>
+
+    <div class="functions-grid">
+      <div class="function-card" data-danger="low">
+        <h4>/ping</h4>
+        <p>Basic heartbeat. Returns status. Hover for note.</p>
+        <p class="small hidden-text">This one answers back — but not always truthfully.</p>
+      </div>
+
+      <div class="function-card" data-danger="high">
+        <h4>/summon</h4>
+        <p>Summons ephemeral logs. Use with care.</p>
+        <p class="small hidden-text">Summoned logs sometimes include names.</p>
+        <button class="btn btn--small" data-action="summon">Summon</button>
+      </div>
+
+      <div class="function-card" data-danger="medium">
+        <h4>/observe</h4>
+        <p>Starts a watcher. Click to toggle.</p>
+        <button class="btn btn--small" data-action="toggle-watcher">Toggle Watcher</button>
+      </div>
+    </div>
+
+    <hr>
+
+    <section>
+      <h3>Notes</h3>
+      <p class="muted">Red indicates danger. Green highlights are warnings or signs.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>© The Archive — Functions</small>
+  </footer>
+</body>
+</html>
