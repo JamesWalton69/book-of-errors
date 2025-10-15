@@ -1,156 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 | The Book of Errors</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
-
-    body {
-      background: #000;
-      color: #ff3b3b;
-      font-family: 'Fira Code', monospace;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      height: 100vh;
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.15);
-      mix-blend-mode: overlay;
-      pointer-events: none;
-      animation: flicker 0.12s infinite;
-    }
-
-    @keyframes flicker {
-      0%, 100% { opacity: 0.8; }
-      50% { opacity: 0.3; }
-    }
-
-    .terminal {
-      padding: 3rem;
-      line-height: 1.6;
-      text-shadow: 0 0 5px #f00;
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 10px;
-      height: 20px;
-      background: #ff0000;
-      animation: blink 0.7s steps(1, start) infinite;
-      vertical-align: bottom;
-    }
-
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
-
-    .glitch {
-      animation: glitch 1s infinite;
-    }
-
-    @keyframes glitch {
-      0% { transform: translate(0, 0); }
-      20% { transform: translate(-2px, 2px); }
-      40% { transform: translate(2px, -1px); }
-      60% { transform: translate(-1px, 1px); }
-      80% { transform: translate(1px, -2px); }
-      100% { transform: translate(0, 0); }
-    }
-
-    .shutdown {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: #000;
-      color: #0f0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      font-size: 1.5rem;
-      text-shadow: 0 0 15px #0f0;
-    }
-
-    .restart-hint {
-      margin-top: 1rem;
-      color: #060;
-      font-size: 0.9rem;
-      opacity: 0.7;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <title>404 — Found You</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <div class="overlay"></div>
-  <div class="terminal" id="terminal"></div>
-  <div class="shutdown" id="shutdown">
-    <div>SYSTEM SHUTDOWN COMPLETE</div>
-    <div>connection terminated.</div>
-    <div class="restart-hint">(rebooting in 5...)</div>
-  </div>
-
-  <audio id="staticSound" autoplay loop>
-    <source src="https://cdn.pixabay.com/audio/2021/08/04/audio_1a1d92b1c7.mp3" type="audio/mpeg">
-  </audio>
-
-  <script>
-    const terminal = document.getElementById('terminal');
-    const shutdown = document.getElementById('shutdown');
-    const messages = [
-      "ACCESS VIOLATION DETECTED...",
-      "INITIATING TRACE SEQUENCE...",
-      "SCANNING VISITOR IDENTITY...",
-      "IP: 192.168." + Math.floor(Math.random()*255) + "." + Math.floor(Math.random()*255),
-      "DEVICE: UNKNOWN",
-      "STATUS: UNAUTHORIZED",
-      "ATTEMPTING TO ERASE ENTRY LOG...",
-      "FAILED.",
-      "ATTEMPTING TO ERASE VISITOR...",
-      "FAILED.",
-      "CONNECTION LOCKED.",
-      "THE SYSTEM KNOWS YOU NOW.",
-      "DON'T COME BACK.",
-      "SHUTTING DOWN..."
-    ];
-
-    const delay = (ms) => new Promise(res => setTimeout(res, ms));
-
-    async function typeLine(line) {
-      const p = document.createElement('p');
-      terminal.appendChild(p);
-      for (let char of line) {
-        p.textContent += char;
-        await delay(40 + Math.random() * 50);
-      }
-      await delay(300);
-    }
-
-    async function runSequence() {
-      for (let msg of messages) {
-        await typeLine(msg);
-      }
-      await delay(1000);
-      document.body.classList.add('glitch');
-      await delay(2000);
-      document.body.innerHTML = '';
-      shutdown.style.display = 'flex';
-      document.getElementById('staticSound').pause();
-
-      // Countdown + redirect
-      for (let i = 5; i > 0; i--) {
-        shutdown.querySelector('.restart-hint').textContent = `(rebooting in ${i}...)`;
-        await delay(1000);
-      }
-      window.location.href = "index.html";
-    }
-
-    runSequence();
-  </script>
+<body data-page="404">
+  <div id="transition"></div>
+  <main class="wrap center">
+    <h1 class="title glitch" data-glitch="I SEE YOU">I SEE YOU</h1>
+    <p class="intro">You were looking for <span id="path"></span>. It was looking for you.</p>
+    <a href="index.html" class="btn">Go back (it won’t help)</a>
+  </main>
+  <div id="eye"></div>
+  <script src="script.js"></script>
 </body>
 </html>
