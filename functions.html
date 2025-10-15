@@ -2,58 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <title>Functions — The Book of Errors</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Functions — The Archive</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="app.js"></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="page page-functions">
-  <header class="site-header">
-    <a class="logo" href="index.html">THE ARCHIVE</a>
+<body data-page="functions">
+  <div id="transition"></div>
+  <header class="nav">
+    <a class="brand glitch" data-glitch="The Book of Errors" href="index.html">The Book of Errors</a>
     <nav>
-      <ul class="nav-menu">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="functions.html" class="nav-link">Functions</a></li>
-        <li><a href="errors.html" class="nav-link">Errors</a></li>
-        <li><a href="about.html" class="nav-link">About</a></li>
-      </ul>
+      <a href="functions.html" class="link active">Functions</a>
+      <a href="errors.html" class="link">Errors</a>
+      <a href="about.html" class="link">About</a>
     </nav>
   </header>
 
-  <main class="container">
-    <h2 class="page-title glitch-text">Functions Index</h2>
+  <main class="wrap">
+    <p class="crumbs corrupt">docs / api / functions</p>
+    <h1 class="title">Function Reference</h1>
 
-    <div class="functions-grid">
-      <div class="function-card" data-danger="low">
-        <h4>/ping</h4>
-        <p>Basic heartbeat. Returns status. Hover for note.</p>
-        <p class="small hidden-text">This one answers back — but not always truthfully.</p>
-      </div>
+    <ul class="funcs">
+      <li>
+        <h3>bleed(text)</h3>
+        <p>Outputs text that drips down the screen.</p>
+        <button class="btn demo" data-demo="bleed">Run</button>
+      </li>
+      <li>
+        <h3>whisper(message)</h3>
+        <p>Fades in and out like something behind you.</p>
+        <button class="btn demo" data-demo="whisper">Run</button>
+      </li>
+      <li>
+        <h3>mirror(self)</h3>
+        <p>Shows your reflection in the code.</p>
+        <button class="btn demo" data-demo="mirror">Run</button>
+      </li>
+      <li>
+        <h3>corrupt(data)</h3>
+        <p>Slowly decays displayed text.</p>
+        <button class="btn demo" data-demo="corrupt">Run</button>
+      </li>
+      <li>
+        <h3>watch(user)</h3>
+        <p>Tracks behavior. Adjusts display accordingly.</p>
+        <button class="btn demo" data-demo="watch">Run</button>
+      </li>
+    </ul>
 
-      <div class="function-card" data-danger="high">
-        <h4>/summon</h4>
-        <p>Summons ephemeral logs. Use with care.</p>
-        <p class="small hidden-text">Summoned logs sometimes include names.</p>
-        <button class="btn btn--small" data-action="summon">Summon</button>
-      </div>
-
-      <div class="function-card" data-danger="medium">
-        <h4>/observe</h4>
-        <p>Starts a watcher. Click to toggle.</p>
-        <button class="btn btn--small" data-action="toggle-watcher">Toggle Watcher</button>
-      </div>
-    </div>
-
-    <hr>
-
-    <section>
-      <h3>Notes</h3>
-      <p class="muted">Red indicates danger. Green highlights are warnings or signs.</p>
-    </section>
+    <div id="demo-stage" class="panel stage"></div>
   </main>
 
-  <footer class="site-footer">
-    <small>© The Archive — Functions</small>
-  </footer>
+  <div id="eye"></div>
+  <script src="script.js"></script>
 </body>
 </html>
